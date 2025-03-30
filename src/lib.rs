@@ -15,6 +15,7 @@ pub mod people;
 pub mod producer;
 pub mod random;
 pub mod recommendations;
+pub mod top;
 pub mod users;
 
 const API_BASE_URL: &str = "https://api.jikan.moe/v4";
