@@ -8,6 +8,7 @@ pub mod character;
 pub mod clubs;
 pub mod common;
 pub mod genre;
+pub mod magazines;
 pub mod manga;
 pub mod misc;
 pub mod people;
