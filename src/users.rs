@@ -68,7 +68,7 @@ pub struct UserStatsResponse {
 pub struct User {
     pub username: String,
     pub url: String,
-    pub images: Images,
+    pub images: Option<Images>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
