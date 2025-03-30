@@ -12,6 +12,7 @@ pub mod magazines;
 pub mod manga;
 pub mod misc;
 pub mod people;
+pub mod producer;
 pub mod random;
 pub mod users;
 

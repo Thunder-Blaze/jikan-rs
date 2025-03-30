@@ -80,6 +80,7 @@ pub async fn get_character_search() {
             Some(String::from("Naruto")),
             Some(OrderBy::Favorites),
             Some(Sort::Asc),
+            None,
         )
         .await;
     println!("{:?}", result);

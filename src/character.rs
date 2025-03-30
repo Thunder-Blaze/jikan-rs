@@ -124,6 +124,7 @@ impl JikanClient {
         q: Option<String>,
         order_by: Option<OrderBy>,
         sort: Option<Sort>,
+        letter: Option<String>,
     ) -> Result<CharacterResponse<Vec<Character>>, JikanError> {
         let mut params: Vec<String> = Vec::new();
 
@@ -151,12 +152,22 @@ impl JikanClient {
             };
             params.push(format!("sort={}", sort));
         }
+
+        if let Some(lett) = letter {
+            if lett.len() != 1 {
+                return Err(JikanError::BadRequest(
+                    "Letter must be a single character".to_string(),
+                ));
+            }
+            params.push(format!("letter={}", lett));
+        }
+
         let query = if !params.is_empty() {
             format!("?{}", params.join("&"))
         } else {
             String::new()
         };
-        println!("{}", query);
+
         self.get(&format!("/characters{}", query)).await
     }
 }
