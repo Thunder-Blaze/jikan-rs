@@ -47,3 +47,39 @@ async fn get_user_stats() {
     assert!(result.is_ok());
     wait_between_tests().await;
 }
+
+#[tokio::test]
+#[serial]
+async fn get_user_friends() {
+    let client = JikanClient::new();
+    let result = client.get_user_friends("InSaiyan__").await;
+    assert!(result.is_ok());
+    wait_between_tests().await;
+}
+
+#[tokio::test]
+#[serial]
+async fn get_user_reviews() {
+    let client = JikanClient::new();
+    let result = client.get_user_reviews("InSaiyan__").await;
+    assert!(result.is_ok());
+    wait_between_tests().await;
+}
+
+#[tokio::test]
+#[serial]
+async fn get_user_history() {
+    let client = JikanClient::new();
+    let result = client.get_user_history("InSaiyan__").await;
+    assert!(result.is_ok());
+    wait_between_tests().await;
+}
+
+#[tokio::test]
+#[serial]
+async fn get_user_favorites() {
+    let client = JikanClient::new();
+    let result = client.get_user_favorites("InSaiyan__").await;
+    assert!(result.is_ok());
+    wait_between_tests().await;
+}
