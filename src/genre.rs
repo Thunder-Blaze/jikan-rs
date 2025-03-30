@@ -1,7 +1,12 @@
-use crate::{
-    common::{DateRange, Images, Pagination},
-    JikanClient, JikanError,
-};
+use crate::{JikanClient, JikanError};
+
+pub enum GenreFilter {
+    None,
+    Genres,
+    ExplicitGenres,
+    Themes,
+    Demographics,
+}
 
 use serde::{Deserialize, Serialize};
 
@@ -19,11 +24,27 @@ pub struct GenreResponse {
 }
 
 impl JikanClient {
-    pub async fn get_anime_genres(&self) -> Result<GenreResponse, JikanError> {
-        self.get("/genres/anime").await
+    pub async fn get_anime_genres(&self, filter: GenreFilter) -> Result<GenreResponse, JikanError> {
+        let query = match filter {
+            GenreFilter::None => String::new(),
+            GenreFilter::Genres => "?filter=genres".to_string(),
+            GenreFilter::ExplicitGenres => "?filter=explicit_genres".to_string(),
+            GenreFilter::Themes => "?filter=themes".to_string(),
+            GenreFilter::Demographics => "?filter=demographics".to_string(),
+        };
+
+        self.get(&format!("/genres/anime{}", query)).await
     }
 
-    pub async fn get_manga_genres(&self) -> Result<GenreResponse, JikanError> {
-        self.get("/genres/manga").await
+    pub async fn get_manga_genres(&self, filter: GenreFilter) -> Result<GenreResponse, JikanError> {
+        let query = match filter {
+            GenreFilter::None => String::new(),
+            GenreFilter::Genres => "?filter=genres".to_string(),
+            GenreFilter::ExplicitGenres => "?filter=explicit_genres".to_string(),
+            GenreFilter::Themes => "?filter=themes".to_string(),
+            GenreFilter::Demographics => "?filter=demographics".to_string(),
+        };
+
+        self.get(&format!("/genres/manga{}", query)).await
     }
 }
